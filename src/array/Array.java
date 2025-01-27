@@ -110,6 +110,89 @@ public class Array {
         return -1;
     }
 
+    public void swap(int[] arr, int a, int b) {
+        int temp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = temp;
+    }
+
+    public void reverse(int[] arr) {
+        int i = 0;
+        int j = arr.length - 1;
+
+        while (i < j) {
+            swap(arr, i, j);
+            i++;
+            j--;
+        }
+    }
+
+    private void rotateHelper(int[] arr, int start, int end) {
+        while (start < end) {
+            swap(arr, start, end);
+            start++;
+            end--;
+        }
+    }
+
+    public void rotateKTimes(int[] arr, int k) {
+        k %= arr.length;
+
+        rotateHelper(arr, 0, arr.length - k - 1);
+        rotateHelper(arr, arr.length - k, arr.length - 1);
+        rotateHelper(arr, 0, arr.length - 1);
+    }
+
+    public void sortZerosAndOnes(int[] arr) {
+        int i = 0;
+        int j = arr.length - 1;
+
+        while (i < j) {
+            if (arr[i] == 0)
+                i++;
+            if (arr[j] == 1)
+                j--;
+            else {
+                swap(arr, i, j);
+                i++;
+                j--;
+            }
+        }
+    }
+
+    public void sortEvenAndOdd(int[] arr) {
+        int i = 0;
+        int j = arr.length - 1;
+
+        while (i < j) {
+            if (arr[i] % 2 == 0)
+                i++;
+            if (arr[j] % 2 != 0)
+                j--;
+            else {
+                swap(arr, i, j);
+                i++;
+                j--;
+            }
+        }
+    }
+
+    public void printArray(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+    }
+
+    public void prefixSum(int[] arr, int idx) {
+        for (int i = 1; i <= idx; i++) {
+            arr[i] += arr[i - 1];
+        }
+    }
+
+
+
+
 
 
 
